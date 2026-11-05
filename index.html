@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#241326">
+  <title>WISDOM DATING</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">WISDOM <span>DATING</span></a>
+    <nav id="main-nav" class="hidden">
+      <button class="nav-btn active" data-view="discover">Discover</button>
+      <button class="nav-btn" data-view="matches">Matches</button>
+      <button class="nav-btn" data-view="messages">Messages</button>
+      <button class="nav-btn" data-view="profile">My profile</button>
+      <button id="logout-btn" class="nav-btn">Log out</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="setup-screen" class="panel narrow">
+      <p class="eyebrow">MEET. CONNECT. DISCOVER.</p>
+      <h1>Your next connection<br><span>could be nearby.</span></h1>
+      <p class="muted">WISDOM DATING helps adults meet people in a city or area they choose.</p>
+      <div class="notice">First-time setup: connect your Supabase project in <code>app.js</code> and run <code>supabase.sql</code>. See the README in the download.</div>
+      <div class="tabs">
+        <button class="tab active" data-auth="signup">Create account</button>
+        <button class="tab" data-auth="login">Log in</button>
+      </div>
+      <form id="auth-form">
+        <label>Email<input id="auth-email" type="email" autocomplete="email" required></label>
+        <label>Password<input id="auth-password" type="password" minlength="8" autocomplete="new-password" required></label>
+        <div id="signup-fields">
+          <label>Display name<input id="auth-name" maxlength="40" placeholder="What should people call you?"></label>
+          <label>Age<input id="auth-age" type="number" min="18" max="100" placeholder="18+" required></label>
+        </div>
+        <button class="primary full" type="submit" id="auth-submit">Create account</button>
+        <p id="auth-message" class="form-message" aria-live="polite"></p>
+      </form>
+      <p class="tiny">You must be 18 or older. Never share your password or financial details with other members.</p>
+    </section>
+
+    <section id="app-screen" class="hidden">
+      <div class="welcome-row">
+        <div><p class="eyebrow">YOUR LOCAL CONNECTIONS</p><h1 id="view-title">Discover people</h1></div>
+        <div class="location-filter"><label for="area-filter">City or area</label><input id="area-filter" placeholder="e.g. Abuja, Wuse"><button id="search-btn" class="primary">Search</button></div>
+      </div>
+      <div id="app-message" class="form-message" aria-live="polite"></div>
+
+      <section id="discover-view" class="view">
+        <div class="section-head"><h2>People in your selected area</h2><p class="muted">Choose a city or neighbourhood. Exact addresses are never shown.</p></div>
+        <div id="people-grid" class="grid"></div>
+      </section>
+
+      <section id="matches-view" class="view hidden">
+        <div class="section-head"><h2>Your matches</h2><p class="muted">A match happens when you both like each other.</p></div>
+        <div id="matches-grid" class="grid"></div>
+      </section>
+
+      <section id="messages-view" class="view hidden">
+        <div class="chat-layout">
+          <aside><h2>Your conversations</h2><div id="conversation-list"></div></aside>
+          <section class="chat-panel">
+            <div id="chat-title" class="chat-title">Choose a match to start chatting</div>
+            <div id="chat-messages" class="chat-messages"></div>
+            <form id="message-form" class="message-form">
+              <input id="message-input" maxlength="2000" placeholder="Write a message..." autocomplete="off" disabled>
+              <button class="primary" type="submit" disabled id="send-btn">Send</button>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <section id="profile-view" class="view hidden">
+        <div class="profile-editor">
+          <h2>Your profile</h2>
+          <form id="profile-form">
+            <label>Display name<input id="profile-name" maxlength="40" required></label>
+            <label>Age<input id="profile-age" type="number" min="18" max="100" required></label>
+            <label>City<input id="profile-city" maxlength="80" placeholder="e.g. Abuja" required></label>
+            <label>Area / neighbourhood<input id="profile-area" maxlength="80" placeholder="e.g. Gwarinpa" required></label>
+            <label>About you<textarea id="profile-bio" maxlength="500" rows="4" placeholder="A little about yourself..."></textarea></label>
+            <label>Profile photo URL<input id="profile-photo" type="url" placeholder="https://..."></label>
+            <button class="primary" type="submit">Save profile</button>
+            <p id="profile-message" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+  <footer>© <span id="year"></span> WISDOM DATING · Be kind. Meet safely.</footer>
+</body>
+</html>
