@@ -2,8 +2,8 @@
 // 2) Run supabase.sql in the Supabase SQL Editor
 // 3) Paste your Project URL and anon/public key below.
 // Never put a Supabase service_role key in browser code.
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_PUBLIC_KEY";
+const SUPABASE_URL = "https://natmrlsgxyxzpmhytvlv.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY = "sb_publishable_x85Tva0EOP9YQmvwkhoLow_6iyzHEWR";
 
 const configured = SUPABASE_URL.startsWith("https://") &&
   !SUPABASE_URL.includes("YOUR_") && !SUPABASE_ANON_KEY.includes("YOUR_");
